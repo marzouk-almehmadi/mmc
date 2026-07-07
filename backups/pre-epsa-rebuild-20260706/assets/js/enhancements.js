@@ -24,10 +24,7 @@
   const searchPanel = document.querySelector('.search-panel');
   const searchInput = searchPanel?.querySelector('input');
   const headerTools = document.querySelector('.header-tools');
-  if (searchButton) {
-    searchButton.type = 'button';
-    searchButton.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg>';
-  }
+  searchButton?.remove();
   if (headerTools && !headerTools.querySelector('.header-preferences')) {
     const legacyLanguageButton = headerTools.querySelector('.lang-btn');
     legacyLanguageButton?.classList.add('legacy-lang-btn');
@@ -57,7 +54,7 @@
     const setTheme = theme => {
       document.documentElement.dataset.theme = theme;
       const dark = theme === 'dark';
-      themeButton.innerHTML = `<span aria-hidden="true">${dark ? '☀' : '☾'}</span>`;
+      themeButton.innerHTML = `<span aria-hidden="true">${dark ? '☾' : '☀'}</span>`;
       themeButton.setAttribute('aria-pressed', String(dark));
       themeButton.title = dark ? 'Dark mode' : 'Light mode';
       localStorage.setItem('mmc-theme', theme);
@@ -120,7 +117,7 @@
       <div class="nav-item has-mega"><a class="${page === 'about' ? 'active' : ''}" href="about.html" ${attrs('من نحن','About')}>${label('من نحن','About')} <i aria-hidden="true">⌄</i></a>${megaPanel('about','من نحن','About Us','شركة سعودية بخبرة تتجاوز 26 عامًا في التعدين والمقاولات والمعدات الثقيلة.','A Saudi company with over 26 years in mining, contracting and heavy equipment.','تعرف على الشركة','Discover MMC','about.html',visualCards(about))}</div>
       <div class="nav-item has-mega"><a class="${page === 'services' ? 'active' : ''}" href="services.html" ${attrs('الخدمات','Services')}>${label('الخدمات','Services')} <i aria-hidden="true">⌄</i></a>${megaPanel('services','خدماتنا','Our Services','قدرات متكاملة من الدراسة والتخطيط حتى التنفيذ والتشغيل.','Integrated capabilities from studies and planning to delivery and operations.','عرض جميع الخدمات','View all services','services.html',serviceCards)}</div>
       <div class="nav-item has-mega"><a class="${page === 'projects' ? 'active' : ''}" href="projects.html" ${attrs('المشاريع','Projects')}>${label('المشاريع','Projects')} <i aria-hidden="true">⌄</i></a>${megaPanel('projects','مشاريعنا','Our Projects','خبرة تنفيذية في المحاجر والتعدين والبنية التحتية والمواقع الصناعية.','Delivery experience across quarries, mining, infrastructure and industrial sites.','عرض جميع المشاريع','View all projects','projects.html',visualCards(projects))}</div>
-      <a class="${page === 'equipment' ? 'active' : ''}" href="equipment.html" ${attrs('الأسطول','Fleet')}>${label('الأسطول','Fleet')}</a>
+      <a href="projects.html#insights" ${attrs('المقالات','Insights')}>${label('المقالات','Insights')}</a>
       <a class="${page === 'contact' ? 'active' : ''}" href="contact.html" ${attrs('تواصل معنا','Contact')}>${label('تواصل معنا','Contact')}</a>`;
 
     const mobileLinks = items => items.map(item => `<a href="${item[0]}" ${attrs(item[1],item[2])}>${label(item[1],item[2])}</a>`).join('');
@@ -129,51 +126,18 @@
       <details><summary ${attrs('من نحن','About')}>${label('من نحن','About')}</summary><div>${mobileLinks(about)}<a class="mobile-all" href="about.html" ${attrs('عرض صفحة من نحن','View About page')}>${label('عرض صفحة من نحن','View About page')}</a></div></details>
       <details><summary ${attrs('الخدمات','Services')}>${label('الخدمات','Services')}</summary><div>${mobileLinks(services)}<a class="mobile-all" href="services.html" ${attrs('عرض جميع الخدمات','View all services')}>${label('عرض جميع الخدمات','View all services')}</a></div></details>
       <details><summary ${attrs('المشاريع','Projects')}>${label('المشاريع','Projects')}</summary><div>${mobileLinks(projects)}<a class="mobile-all" href="projects.html" ${attrs('عرض جميع المشاريع','View all projects')}>${label('عرض جميع المشاريع','View all projects')}</a></div></details>
-      <a href="equipment.html" ${attrs('الأسطول','Fleet')}>${label('الأسطول','Fleet')}</a>
-      <a href="certificates.html" ${attrs('الشهادات','Certificates')}>${label('الشهادات','Certificates')}</a>
-      <a href="careers.html" ${attrs('الوظائف','Careers')}>${label('الوظائف','Careers')}</a>
+      <a href="projects.html#insights" ${attrs('المقالات','Insights')}>${label('المقالات','Insights')}</a>
       <a href="contact.html" ${attrs('تواصل معنا','Contact')}>${label('تواصل معنا','Contact')}</a>
       <a class="mobile-whatsapp" href="https://wa.me/966500075750" target="_blank" rel="noopener" ${attrs('تواصل عبر واتساب','Contact on WhatsApp')}>${label('تواصل عبر واتساب','Contact on WhatsApp')}</a>`;
 
-    const megaItems = [...desktopNav.querySelectorAll('.has-mega')];
-    let megaCloseTimer = 0;
-    const setMegaState = activeItem => {
-      megaItems.forEach(item => {
-        const open = item === activeItem;
-        item.classList.toggle('mega-open', open);
-        item.querySelector(':scope > a')?.setAttribute('aria-expanded', String(open));
-      });
-    };
-    const clearMegaTimer = () => {
-      if (!megaCloseTimer) return;
-      clearTimeout(megaCloseTimer);
-      megaCloseTimer = 0;
-    };
-    const scheduleMegaClose = () => {
-      clearMegaTimer();
-      megaCloseTimer = setTimeout(() => setMegaState(null), 180);
-    };
-    megaItems.forEach(item => {
+    desktopNav.querySelectorAll('.has-mega').forEach(item => {
       const trigger = item.querySelector(':scope > a');
-      const panel = item.querySelector('.mega-menu');
       trigger.setAttribute('aria-haspopup', 'true');
       trigger.setAttribute('aria-expanded', 'false');
-      const openItem = () => {
-        clearMegaTimer();
-        setMegaState(item);
-      };
-      item.addEventListener('mouseenter', openItem);
-      item.addEventListener('mouseleave', scheduleMegaClose);
-      item.addEventListener('focusin', openItem);
-      item.addEventListener('focusout', event => {
-        if (!item.contains(event.relatedTarget)) scheduleMegaClose();
-      });
-      panel?.addEventListener('mouseenter', openItem);
-      panel?.addEventListener('mouseleave', scheduleMegaClose);
-    });
-    desktopNav.addEventListener('mouseleave', scheduleMegaClose);
-    document.addEventListener('click', event => {
-      if (!desktopNav.contains(event.target)) setMegaState(null);
+      item.addEventListener('mouseenter', () => trigger.setAttribute('aria-expanded', 'true'));
+      item.addEventListener('mouseleave', () => trigger.setAttribute('aria-expanded', 'false'));
+      item.addEventListener('focusin', () => trigger.setAttribute('aria-expanded', 'true'));
+      item.addEventListener('focusout', event => { if (!item.contains(event.relatedTarget)) trigger.setAttribute('aria-expanded', 'false'); });
     });
   }
   panel?.setAttribute('aria-label', isArabic ? 'التنقل الرئيسي' : 'Main navigation');
