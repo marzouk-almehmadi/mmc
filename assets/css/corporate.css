@@ -923,9 +923,13 @@ body[data-page="home"] .home-service-card:nth-child(n+3) :is(h3,p,b){color:#fff}
 }
 @media(max-width:390px){.language-switch button:not(.active){display:none}.language-switch{padding:3px}.site-header{gap:5px}}
 
+/* Large, readable section labels shared by every page. */
+main .kicker{font-size:clamp(20px,1.65vw,26px);font-weight:900;line-height:1.4;letter-spacing:0;text-transform:none}
+@media(max-width:620px){main .kicker{font-size:clamp(18px,5.2vw,22px);line-height:1.45}}
+
 /* Homepage rebuild — scoped to the new MMC home composition. */
 body[data-page="home"] .home-v2{overflow:hidden;background:#fff}
-.home-v2 .kicker{margin-bottom:14px;color:var(--green);font-size:12px;font-weight:800;letter-spacing:.08em}
+.home-v2 .kicker{margin-bottom:16px;color:var(--green);font-size:clamp(20px,1.65vw,26px);font-weight:900;line-height:1.4;letter-spacing:0}
 .home-v2-heading{display:flex;align-items:end;justify-content:space-between;gap:50px;margin-bottom:54px}
 .home-v2-heading h2{max-width:860px;margin:0;color:var(--navy);font-size:clamp(48px,5vw,82px);line-height:1.08}
 .home-v2-heading>p{max-width:480px;margin:0;color:var(--muted);font-size:16px}
@@ -1074,6 +1078,7 @@ body[data-page="home"] .site-footer .footer-col h3{color:var(--gold)}
   .home-v2-hero__meta{display:none}.home-v2-scroll{bottom:17px}
   .home-v2-hero__content>p:not(.kicker):not(.home-v2-hero__accent){max-width:32ch;font-size:14px;line-height:1.85}
   .home-v2-actions{align-items:center;justify-content:center;flex-direction:column;gap:18px}
+  .home-v2 .kicker{margin-bottom:12px;font-size:clamp(18px,5.2vw,22px);line-height:1.45}
   .home-v2-about{gap:50px;padding-inline:20px}
   .home-v2-heading h2,.home-v2-about__copy h2,.home-v2-equipment h2,.home-v2-gallery h2,.home-v2-cta h2{font-size:clamp(36px,9.2vw,54px);line-height:1.16}
   .home-v2-about__media img{height:390px}

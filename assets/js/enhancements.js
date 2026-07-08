@@ -133,7 +133,7 @@
       <a href="certificates.html" ${attrs('الشهادات','Certificates')}>${label('الشهادات','Certificates')}</a>
       <a href="careers.html" ${attrs('الوظائف','Careers')}>${label('الوظائف','Careers')}</a>
       <a href="contact.html" ${attrs('تواصل معنا','Contact')}>${label('تواصل معنا','Contact')}</a>
-      <a class="mobile-whatsapp" href="https://wa.me/966500075750" target="_blank" rel="noopener" ${attrs('تواصل عبر واتساب','Contact on WhatsApp')}>${label('تواصل عبر واتساب','Contact on WhatsApp')}</a>`;
+      <a class="mobile-whatsapp" href="https://wa.me/966566222773" target="_blank" rel="noopener" ${attrs('تواصل عبر واتساب','Contact on WhatsApp')}>${label('تواصل عبر واتساب','Contact on WhatsApp')}</a>`;
 
     const megaItems = [...desktopNav.querySelectorAll('.has-mega')];
     let megaCloseTimer = 0;
@@ -293,8 +293,8 @@
       status.textContent = document.documentElement.lang === 'ar'
         ? 'تم تجهيز طلبك. سيتم فتح واتساب لإرساله إلى فريقنا.'
         : 'Your inquiry is ready. WhatsApp will open so you can send it to our team.';
-      const popup = window.open(`https://wa.me/966500075750?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
-      if (!popup) window.location.href = `https://wa.me/966500075750?text=${encodeURIComponent(message)}`;
+      const popup = window.open(`https://wa.me/966566222773?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
+      if (!popup) window.location.href = `https://wa.me/966566222773?text=${encodeURIComponent(message)}`;
     });
   }
 

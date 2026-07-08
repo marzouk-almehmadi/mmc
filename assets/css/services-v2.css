@@ -2,5 +2,9 @@ body[data-page=services]{background:#fff;color:#123b29}.service-index{overflow:c
 .si-reveal{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}.si-reveal.visible{opacity:1;transform:none}
 @media(max-width:850px){.si-intro>div,.si-feature>div{grid-template-columns:1fr}.si-intro>div>p{padding-top:0}.si-feature img{height:450px}.si-band{min-height:500px}.si-band:nth-child(even)>div{margin-inline:max(22px,calc((100vw - 1320px)/2))}}
 @media(max-width:620px){.si-shell{width:calc(100% - 28px)}.si-hero{min-height:720px}.si-hero h1{font-size:clamp(42px,13vw,60px)}.si-hero p:not(.kicker){font-size:15px}.si-intro h2,.si-band h2,.si-feature h2,.si-fleet h2{font-size:clamp(36px,9vw,54px);line-height:1.14}.si-band{min-height:470px}.si-band>div{width:calc(100% - 38px);margin-inline:19px!important}.si-feature img{height:340px}.si-fleet{min-height:540px}}
+
+/* Section labels */
+.service-index .kicker,.service-index .si-band span{font-size:clamp(20px,1.65vw,26px);font-weight:900;line-height:1.4;letter-spacing:0}
+@media(max-width:620px){.service-index .kicker,.service-index .si-band span{font-size:clamp(18px,5.2vw,22px);line-height:1.45}}
 @media(prefers-reduced-motion:reduce){.si-band>img{transition:none}}
 @media(prefers-reduced-motion:reduce){.si-reveal{opacity:1;transform:none}}
